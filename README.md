@@ -14,18 +14,18 @@ Size: 5,000 rows, 12 columns
 Quality: No missing values, no duplicate order IDs
 
 Column	Description
-order_id	Unique identifier for each order
-order_date	Date the order was placed
-customer_id	Unique identifier for each customer
-product_category	Beauty, Clothing, Electronics, or Home
-region	North, South, East, or West
-quantity	Number of units purchased
-unit_price	Price per unit (before discount)
-discount	Discount applied, as a fraction (e.g. 0.10 = 10%)
-payment_method	Wallet, Card, or COD
-delivery_days	Number of days taken to deliver the order
-customer_rating	Customer's rating of the order (1.0–5.0)
-revenue	Final revenue for the order (quantity × unit_price × (1 − discount))
+- order_id	Unique identifier for each order
+- order_date	Date the order was placed
+- customer_id	Unique identifier for each customer
+- product_category	Beauty, Clothing, Electronics, or Home
+- region	North, South, East, or West
+- quantity	Number of units purchased
+- unit_price	Price per unit (before discount)
+- discount	Discount applied, as a fraction (e.g. 0.10 = 10%)
+- payment_method	Wallet, Card, or COD
+- delivery_days	Number of days taken to deliver the order
+- customer_rating	Customer's rating of the order (1.0–5.0)
+- revenue	Final revenue for the order (quantity × unit_price × (1 − discount))
 
 🛠️ Tools Used
 PostgreSQL — database and query engine
@@ -50,12 +50,12 @@ ecommerce-sql-analytics/
 
 Before analysis, the dataset was validated for quality using the following checks:
 
-Null check — confirmed no NULL values across all 12 columns.
-Duplicate check — confirmed all order_id values are unique.
-Date range check — order dates span from Jan 2022 to Sep 2035; confirmed as a simulated multi-year dataset with no invalid date formats.
-Revenue formula validation — verified revenue ≈ quantity × unit_price × (1 − discount) holds across all rows, confirming internal consistency of the data.
-Range/outlier check — confirmed all values fall within expected bounds (e.g. customer_rating between 1–5, discount between 0–0.35, no negative quantities).
-See sql/02_data_cleaning.sql for the full queries.
+- Null check — confirmed no NULL values across all 12 columns.
+- Duplicate check — confirmed all order_id values are unique.
+- Date range check — order dates span from Jan 2022 to Sep 2035; confirmed as a simulated multi-year dataset with no invalid date formats.
+- Revenue formula validation — verified revenue ≈ quantity × unit_price × (1 − discount) holds across all rows, confirming internal consistency of the data.
+- Range/outlier check — confirmed all values fall within expected bounds (e.g. customer_rating between 1–5, discount between 0–0.35, no negative quantities).
+- See sql/02_data_cleaning.sql for the full queries.
 
 Data Exploration
 
@@ -65,28 +65,22 @@ Initial exploration was performed to understand the shape of the dataset before 
 
 All 20 business questions are answered in sql/04_business_questions.sql, grouped into six categories:
 
-Revenue & Sales Performance — total revenue, monthly trend, top categories/regions, AOV
-Product & Category Analysis — revenue/quantity by category, discount patterns, ratings by category
-Customer Behavior — top customers, repeat customers, average spend, rating distribution
-Regional Analysis — revenue and delivery performance by region
-Payment Method Analysis — revenue split and rating by payment method
-Delivery Performance — relationship between delivery time and customer rating
+- Revenue & Sales Performance — total revenue, monthly trend, top categories/regions, AOV
+- Product & Category Analysis — revenue/quantity by category, discount patterns, ratings by category
+- Customer Behavior — top customers, repeat customers, average spend, rating distribution
+- Regional Analysis — revenue and delivery performance by region
+- Payment Method Analysis — revenue split and rating by payment method
+- Delivery Performance — relationship between delivery time and customer rating
 
-💡Business Insights
+## 💡 Business Insights
 
-(Replace with your actual findings after running the queries — examples below)
-
-[Category] contributes the largest share of total revenue.
-[Region] has the highest average delivery time and the lowest average customer rating.
-The top 10% of customers account for a disproportionate share of total revenue.
-[Payment method] has the highest average customer rating despite lower order volume.
-Recommendations
-
-(Replace with recommendations based on your actual insights — examples below)
-
-Focus marketing spend on [region/category] where revenue potential is untapped.
-Investigate delivery delays in [region] to improve customer satisfaction scores.
-Consider incentivizing [payment method] given its higher customer satisfaction.
+- **Electronics is the top revenue-driving category**, contributing ₹18.3L (~35.8% of total revenue), followed by Clothing (30%), Home (19.2%), and Beauty (15%) — Electronics' higher unit price is the main driver, not order volume.
+- **West region generates the highest total revenue** (₹13.5L), narrowly ahead of North, South, and East — but the gap across all four regions is small (within ~8% of each other), indicating fairly even geographic demand rather than one dominant market.
+- **Card is the most-used and highest-rated payment method** — it drives the highest total revenue (₹23.7L across 2,270 orders) and also has the best average customer rating (3.02), compared to COD (2.94) and Wallet (2.93).
+- **Customer base is heavily repeat-driven** — 950 of 989 unique customers (96%) placed more than one order, showing strong repeat purchase behavior rather than one-time buyers.
+- **Revenue concentration among top customers is moderate, not extreme** — the top 10% of customers contribute ~21% of total revenue, meaning revenue is fairly well distributed rather than dependent on a small handful of big spenders.
+- **Delivery time has no meaningful impact on customer rating** — average rating stays flat (~2.9–3.1) regardless of whether delivery took 1 day or 11 days (correlation ≈ -0.02), suggesting customer satisfaction here is driven more by product/price than delivery speed.
+- **Average Order Value (AOV) is consistent across regions** (~₹1,000–₹1,044), reinforcing that no single region is skewing overall performance — growth strategies can likely be applied uniformly rather than region-specific.n.
 
 ## 👨‍💻 Author
 
