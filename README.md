@@ -96,6 +96,6 @@ Aspiring **Data Analyst** with hands-on experience in **SQL, PostgreSQL, Python,
 
 ### 📬 Connect with Me
 
-- 💼 LinkedIn: https://www.linkedin.com/in/YOUR-LINKEDIN- Ajit Pal
+- 💼 LinkedIn: https://www.linkedin.com/in/YOUR-LINKEDIN-Ajit Pal
 - 💻 GitHub: https://github.com/YOUR-GITHUB-Ajit-Pal7363
 - 📧 Email: ajitnpal7363@gmail.com
